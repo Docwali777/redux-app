@@ -1,22 +1,21 @@
 import React, { Component} from 'react'
+import { render } from 'react-dom'
+import BookList from './components/pages/booksList'
+import { Provider } from 'react-redux'
+//-------REDUX
 import {createStore, applyMiddleware} from 'redux';
 import {logger} from 'redux-logger'
 
+import reducers  from './reducers/index'
 
-const reducer = (state ={number: 0}, action) =>{
-switch(action.type){
-  case 'ADD':
-  let incByOne = {...state};
-  return incByOne.number + action.payload.num
-break
-}
+import { postBooks, deleteBooks, updateBook} from './actions/bookActions'
 
-  return state
-}
+import { addToCart } from './actions/cartActions'
+
 var middleware = applyMiddleware(logger)
-var store = createStore(reducer, middleware)
+var store = createStore(reducers, middleware)
 
-store.dispatch({
-  type: 'ADD',
-  payload: {num: 1}
-})
+
+render(<Provider store={store}>
+  <BookList />
+</Provider>, document.getElementById('app'))
