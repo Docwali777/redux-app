@@ -1,0 +1,12 @@
+body {
+  margin-top: 50px;
+  margin-bottom: 50px
+}
+
+.container {
+  width: auto;
+  max-width: 900px
+}
+.badge {
+  background-color: #e4aa48
+}
